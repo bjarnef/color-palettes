@@ -1,1 +1,1 @@
-# color-palettes
+# Color Palettes
