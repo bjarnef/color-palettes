@@ -1,0 +1,78 @@
+﻿<div ng-controller="Our.Umbraco.ColorPalettes.PaletteEditDialog.Controller">
+    <form name="createpalette_form" novalidate ng-submit="submit(paletteData)">
+        <div class="umb-panel">
+            <div class="umb-panel-body no-header with-footer">
+                <h4>{{heading}}</h4>
+                <em>- or -</em><br />
+                <a class="btn btn-link get-palette" ng-click="showthirdPartyPalette = true" ng-class="{ 'active': showthirdPartyPalette }" prevent-default>Get palette from Kuler or COLOURlovers</a>
+
+                <div ng-show="showthirdPartyPalette">
+                    <input type="radio" name="palette-source" id="palette-kuler" ng-model="paletteSource" ng-change="updatePaletteSource()" value="kuler" />
+                    <label class="radio inline control-label" for="palette-kuler">Kuler</label>
+
+                    <input type="radio" name="palette-source" id="palette-colourlovers" ng-model="paletteSource" ng-change="updatePaletteSource()" value="colourlovers" />
+                    <label class="radio inline control-label" for="palette-colourlovers">COLOURlovers</label>
+
+                    <div class="palette-source-group">
+                        <input type="text" ng-model="c_paletteId" class="form-control" placeholder="{{palettePlaceholderText}}" />
+                        <button class="btn btn-default" ng-click="getPalette(c_paletteId, paletteSource)" ng-disabled="!paletteSource || !c_paletteId" prevent-default>Get palette</button>
+                    </div>
+                </div>
+
+                <div class="umb-loader-wrapper" ng-show="showReqPreloader && !showReqError"><div class=" umb-loader"></div></div>
+                <div class="alert alert-danger" ng-show="showReqError" ng-cloak>{{paletteError}}</div>
+                <div class="alert alert-info" ng-show="!showReqError && showReqNoResults" ng-cloak>{{paletteSuccessMsg}}</div>
+
+                <hr />
+
+                <h5>Palette Definition</h5>
+
+                <label for="palette-name">Name</label>
+                <input type="text" id="palette-name" name="palettename" class="umb-editor" ng-model="paletteData.name" placeholder="Enter name of palette" required />
+
+                <label for="palette-alias">Alias</label>
+                <input type="text" id="palette-alias" name="palettealias" class="umb-editor" ng-model="paletteData.alias" placeholder="Enter alias of palette" required />
+
+                <div class="colors-wrapper">
+                    <ul ui-sortable="sortableOptions" ng-model="paletteData.colors" class="color-rows">
+                        <li ng-repeat="color in paletteData.colors" class="color-row" ng-class="{ 'unsortable': paletteData.colors.length <= 1 }">
+                            <div class="color-data-wrapper">
+                                <div class="color-data">
+                                    <div class="input-group">
+                                        <span class="input-group-addon handle"><span class="icon-colorpicker"></span></span>
+                                        <input type="text" class="form-control" ng-model="color.code" placeholder="#ffffff, rgb(255,255,255) or white" required />
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon handle"><span class="icon-bookmark"></span></span>
+                                        <input type="text" class="form-control" ng-model="color.name" placeholder="Color name" />
+                                    </div>
+                                </div>
+                                <div class="thumbnail color-thumb handle">
+                                    <span ng-style="{ 'background-color': color.code }"></span>
+                                </div>
+                            </div>
+
+                            <a href="#" prevent-default ng-click="remove(color)" ng-show="canRemoveRow()" class="remove">
+                                <i class="icon icon-delete red hover-show"></i> Remove Color
+                            </a>
+                        </li>
+                    </ul>
+                    <div id="cp-overlay"></div>
+                </div>
+                <a href="#" prevent-default ng-click="addColor()">
+                    <i class="icon icon-add blue"></i> Add Color
+                </a>
+            </div>
+            <div class="umb-panel-footer">
+                <div class="btn-toolbar umb-btn-toolbar pull-right">
+                    <a class="btn btn-link" ng-click="close()">
+                        <localize key="cancel" />
+                    </a>
+                    <button type="submit" class="btn btn-primary" ng-disabled="!createpalette_form.$valid">
+                        <localize key="buttons_select">Select</localize>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

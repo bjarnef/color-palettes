@@ -1,0 +1,18 @@
+﻿<div ng-controller="Our.Umbraco.ColorPalettes.Editor.Controller" class="color-palettes">
+    <ul class="unstyled clearfix">
+        <li ng-repeat="palette in palettes" class="collection-assets-item" ng-class="{ 'selected': $parent.selectedPalette.alias === palette.alias, 'hidden-radio': model.config.hideRadioButtons }" ng-click="selectPalette(palette)">
+            <div class="frame">
+                <div class="color-data-row">
+                    <div ng-repeat="color in palette.colors" class="color-data" ng-style="{backgroundColor: color.code}">
+                    </div>
+                </div>
+                <div class="color-data-info">
+                    <div></div>
+                    <i class="icon icon-check"></i>
+                </div>
+            </div>
+            <input type="radio" name="palette" id="palette-{{$index + 1}}" value="{{palette.alias}}" ng-model="$parent.selectedPalette" ng-checked="$parent.selectedPalette.alias === palette.alias" />
+            <label for="palette-{{$index + 1}}" class="palette-name">{{ palette.name }}</label>
+        </li>
+    </ul>
+</div>

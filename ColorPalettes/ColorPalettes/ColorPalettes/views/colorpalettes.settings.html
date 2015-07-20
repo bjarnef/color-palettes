@@ -1,0 +1,32 @@
+﻿<div ng-controller="Our.Umbraco.ColorPalettes.Settings.Controller">
+    <p>
+        <a href="#" ng-click="addPalette()" class="add-palette" prevent-default><i class="icon icon-add blue"></i> Add Palette</a>
+    </p>
+    <ul id="sortable" class="palette-wrapper" ui-sortable="sortableOptions" ng-model="palettes">
+        <li class="palette-container" ng-repeat="palette in palettes" ng-class="{ 'unsortable': palettes.colors.length <= 1 }">
+            <div class="panel panel-default">
+                <div class="panel-heading handle">
+                    <span>#{{$index + 1}}</span>&nbsp;&nbsp;
+                    <h3 class="panel-title">{{palette.name}}</h3>
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle no-drag" data-toggle="dropdown">
+                            <span class="icon-settings"></span>&nbsp;Manage <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu no-drag manage-palette" role="menu">
+                            <li><span class="menu-ctrl" ng-click="editPalette(palette)"><span class="icon-edit"></span>&nbsp;Edit palette</span></li>
+                            <li class="divider"></li>
+                            <li><span class="menu-ctrl" ng-click="removePalette(palette)"><span class="icon-delete"></span>&nbsp;Remove</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <table class="panel-body colors">
+                    <tr>
+                        <td ng-repeat="color in palette.colors" class="color-data" ng-style="{backgroundColor: color.code}">
+                            <p title="{{color.name}}">{{color.code}}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </li>
+    </ul>
+</div>
