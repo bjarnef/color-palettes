@@ -11,8 +11,8 @@ using Umbraco.Web;
 namespace Our.Umbraco.ColorPalettes.Converters
 {
         /// <summary>
-        /// Value converter class to convert a json key value pairs object
-        /// to a strongly typed key value pairs instance.
+        /// Value converter class to convert a json colorpalette object
+        /// to a strongly typed ColorPalette instance.
         /// </summary>
         [PropertyValueType(typeof(ColorPalette))]
         [PropertyValueCache(PropertyCacheValue.All, PropertyCacheLevel.Content)]
@@ -20,13 +20,13 @@ namespace Our.Umbraco.ColorPalettes.Converters
         {
             /// <summary>
             /// Method to convert a property value to an instance
-            /// of the key value pairs class.
+            /// of the ColorPalette class.
             /// </summary>
             /// <param name="propertyType">The current published property
             /// type to convert.</param>
             /// <param name="source">The original property data.</param>
             /// <param name="preview">True if in preview mode.</param>
-            /// <returns>An instance of the key value pairs class.</returns>
+            /// <returns>An instance of the ColorPalette class.</returns>
             public override object ConvertDataToSource(PublishedPropertyType propertyType, object source, bool preview)
             {
                 if (source == null)
@@ -56,11 +56,11 @@ namespace Our.Umbraco.ColorPalettes.Converters
 
             /// <summary>
             /// Method to see if the current property type is of type
-            /// key value editor.
+            /// ColorPalettes editor.
             /// </summary>
             /// <param name="propertyType">The current property type.</param>
             /// <returns>True if the current property type of of type
-            /// key value editor.</returns>
+            /// ColorPalettes editor.</returns>
             public override bool IsConverter(PublishedPropertyType propertyType)
             {
                 return propertyType.PropertyEditorAlias.Equals("Our.Umbraco.ColorPalettes");

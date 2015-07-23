@@ -25,7 +25,7 @@
         }
   	}],
   	javascript: [
-		"~/App_Plugins/ColorPalettes/filters/camelcase.js",
+		"~/App_Plugins/ColorPalettes/filters/CamelCase.js",
 		"~/App_Plugins/ColorPalettes/resources/ColorPalettes.Resource.js",
     	"~/App_Plugins/ColorPalettes/controllers/ColorPalettesSettings.Controller.js",
 		"~/App_Plugins/ColorPalettes/controllers/PaletteEditorDialog.Controller.js",

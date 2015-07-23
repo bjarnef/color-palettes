@@ -1,13 +1,19 @@
 ﻿angular.module("umbraco").controller("Our.Umbraco.ColorPalettes.PaletteEditDialog.Controller", function ($scope, $filter, $timeout, colorPalettesResource) {
 
+    var nameAlreadyChanged = false;
+
     $scope.heading = "Edit Palette";
     $scope.palettePlaceholderText = "Enter palette id";
     $scope.showthirdPartyPalette = false;
 
     $scope.paletteData = angular.copy($scope.dialogData) || {};
 
-    if (!$scope.paletteData.name)
+    if (!$scope.paletteData.name) {
         $scope.paletteData.name = null;
+    } else {
+        // if paletteData.name has a value from beginning we won't update alias
+        nameAlreadyChanged = true;
+    }
 
     if (!$scope.paletteData.alias)
         $scope.paletteData.alias = null;
@@ -33,6 +39,16 @@
 
     if (!$scope.paletteData.name && !$scope.paletteData.alias) {
         $scope.heading = "Create New Palette";
+    }
+    
+    $scope.updatePaletteName = function () {
+        if (!nameAlreadyChanged) {
+            $scope.paletteData.alias = $filter('camelCase')($scope.paletteData.name);
+        }
+    }
+
+    $scope.updatePaletteAlias = function () {
+        nameAlreadyChanged = true;
     }
 
     $scope.addColor = function () {
@@ -61,17 +77,30 @@
     $scope.showReqPreloader = false;
 
     $scope.getPalette = function (id, source) {
+        $scope.showReqPreloader = true;
+
         colorPalettesResource.getPalette(id, source)
             .success(function (data) {
-                $scope.showReqPreloader = true;
+
+                // change variable as we have fetched the name (and generate alias from it)
+                nameAlreadyChanged = true;
                 
                 var palette;
                 var jsonStr = angular.fromJson(data);
+
                 if (jsonStr.length > 0) {
                     palette = JSON.parse(jsonStr);
+                }
 
+                // update paletteData if requested palette has property values
+                if (palette != null && (palette.name || palette.alias || palette.colors)) {
+                    
                     $timeout(function () {
                         $scope.paletteData = palette;
+
+                        if ($scope.paletteData != null && $scope.paletteData.name != null)
+                            $scope.paletteData.alias = $filter('camelCase')($scope.paletteData.name);
+
                         $scope.showReqPreloader = false;
                     }, 1500);
 
@@ -91,6 +120,7 @@
                 }
             }).
             error(function (data) {
+                $scope.showReqPreloader = false;
                 $scope.showReqError = true;
                 $scope.paletteError = "Sorry, an error occurred while processing your request.";
 
@@ -153,5 +183,4 @@
             });
         }
     };
-
 });

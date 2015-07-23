@@ -28,10 +28,10 @@
                 <h5>Palette Definition</h5>
 
                 <label for="palette-name">Name</label>
-                <input type="text" id="palette-name" name="palettename" class="umb-editor" ng-model="paletteData.name" placeholder="Enter name of palette" required />
+                <input type="text" id="palette-name" name="palettename" class="umb-editor" ng-model="paletteData.name" ng-change="updatePaletteName()" placeholder="Enter name of palette" required />
 
                 <label for="palette-alias">Alias</label>
-                <input type="text" id="palette-alias" name="palettealias" class="umb-editor" ng-model="paletteData.alias" placeholder="Enter alias of palette" required />
+                <input type="text" id="palette-alias" name="palettealias" class="umb-editor" ng-model="paletteData.alias" ng-change="updatePaletteAlias()" placeholder="Enter alias of palette" required />
 
                 <div class="colors-wrapper">
                     <ul ui-sortable="sortableOptions" ng-model="paletteData.colors" class="color-rows">

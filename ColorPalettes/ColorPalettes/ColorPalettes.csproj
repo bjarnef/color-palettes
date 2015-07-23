@@ -229,7 +229,7 @@
     <Content Include="ColorPalettes\controllers\ColorPalettes.Controller.js" />
     <Content Include="ColorPalettes\controllers\PaletteEditorDialog.Controller.js" />
     <Content Include="ColorPalettes\css\styles.css" />
-    <Content Include="ColorPalettes\filters\camelcase.js" />
+    <Content Include="ColorPalettes\filters\CamelCase.js" />
     <Content Include="ColorPalettes\views\ColorPalettes.html" />
     <Content Include="ColorPalettes\views\ColorPalettes.Settings.html" />
     <Content Include="ColorPalettes\views\PaletteEditDialog.html" />
