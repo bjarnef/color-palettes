@@ -12,10 +12,20 @@ To use the selected palette in your razor view add the following namespaces:
 ````
 
 #### Get selected palette
-
+###### Strongly typed example
 ```
 ColorPalette palette = Model.Content.GetPropertyValue<ColorPalette>("theme");
+var colors = palette.Colors;
 ````
+###### Dynamic example
+```
+ColorPalette palette = (ColorPalette)CurrentPage.theme;
+var colors = palette.Colors;
+```
+or
+```
+var colors = ((ColorPalette)CurrentPage.theme).Colors;
+```
 
 #### Loop through each color defined in the palette
 
