@@ -229,7 +229,12 @@
     <Content Include="ColorPalettes\controllers\ColorPalettes.Controller.js" />
     <Content Include="ColorPalettes\controllers\PaletteEditorDialog.Controller.js" />
     <Content Include="ColorPalettes\css\styles.css" />
+    <Content Include="ColorPalettes\directives\PaletteDownload.js" />
     <Content Include="ColorPalettes\filters\CamelCase.js" />
+    <Content Include="ColorPalettes\lib\Blob.js" />
+    <Content Include="ColorPalettes\lib\FileSaver.js" />
+    <Content Include="ColorPalettes\modules\angular-file-saver.js" />
+    <Content Include="ColorPalettes\modules\ng-file-upload.js" />
     <Content Include="ColorPalettes\views\ColorPalettes.html" />
     <Content Include="ColorPalettes\views\ColorPalettes.Settings.html" />
     <Content Include="ColorPalettes\views\PaletteEditDialog.html" />

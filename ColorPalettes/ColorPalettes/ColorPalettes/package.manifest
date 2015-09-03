@@ -26,7 +26,12 @@
   	}],
   	javascript: [
 		"~/App_Plugins/ColorPalettes/filters/CamelCase.js",
+		"~/App_Plugins/ColorPalettes/modules/ng-file-upload.js",
+		"~/App_Plugins/ColorPalettes/lib/Blob.js",
+		"~/App_Plugins/ColorPalettes/lib/FileSaver.js",
+		"~/App_Plugins/ColorPalettes/modules/angular-file-saver.js",
 		"~/App_Plugins/ColorPalettes/resources/ColorPalettes.Resource.js",
+		"~/App_Plugins/ColorPalettes/directives/PaletteDownload.js",
     	"~/App_Plugins/ColorPalettes/controllers/ColorPalettesSettings.Controller.js",
 		"~/App_Plugins/ColorPalettes/controllers/PaletteEditorDialog.Controller.js",
 		"~/App_Plugins/ColorPalettes/controllers/ColorPalettes.Controller.js"

@@ -2,12 +2,34 @@
     <p>
         <a href="#" ng-click="addPalette()" class="add-palette" prevent-default><i class="icon icon-add blue"></i> Add Palette</a>
     </p>
+    <p>
+        Add a new palette or export/import existing palettes.
+    </p>
+    <div class="palette-export-import">
+        <p>
+            <span class="error-msg" ng-show="!isBlobSupported()">Blob is not supported by your browser and therefore export function won't work.<br /></span>
+            <palette-download data="getPalettesToExport()" text="Export Palettes" ng-disabled="palettes.length == 0 || !anySelected()" is-disabled="palettes.length == 0 || !anySelected()"></palette-download>
+
+            <button class="btn btn-small" type="file" ngf-select="uploadFiles($file)" ngf-pattern="'.json,.txt'" accept="text/*" ngf-max-size="1MB">
+                <i class="icon icon-page-up"></i> Import Palettes
+            </button>
+        </p>
+        <p ng-show="palettes.length > 0">
+            <br />
+            <label class="check-label-all">
+                <input type="checkbox" ng-model="exportConfig.allItemsSelected" ng-change="selectAll()" no-dirty-check> Select All
+            </label>
+            <span class="label label-info">{{countSelected()}} of {{palettes.length}} selected</span>
+        </p>
+    </div>
     <ul id="sortable" class="palette-wrapper" ui-sortable="sortableOptions" ng-model="palettes">
         <li class="palette-container" ng-repeat="palette in palettes" ng-class="{ 'unsortable': palettes.colors.length <= 1 }">
             <div class="panel panel-default">
                 <div class="panel-heading handle">
-                    <span>#{{$index + 1}}</span>&nbsp;&nbsp;
-                    <h3 class="panel-title">{{palette.name}}</h3>
+                    <label class="no-drag check-label">
+                        <input type="checkbox" ng-model="palette.isChecked" ng-change="selectPalette()" no-dirty-check>
+                    </label>
+                    <span>#{{$index + 1}}</span>&nbsp;&nbsp;&nbsp;<h3 class="panel-title">{{palette.name}}</h3>
                     <div class="btn-group pull-right">
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle no-drag" data-toggle="dropdown">
                             <span class="icon-settings"></span>&nbsp;Manage <span class="caret"></span>
@@ -16,6 +38,8 @@
                             <li><span class="menu-ctrl" ng-click="editPalette(palette)"><span class="icon-edit"></span>&nbsp;Edit palette</span></li>
                             <li class="divider"></li>
                             <li><span class="menu-ctrl" ng-click="removePalette(palette)"><span class="icon-delete"></span>&nbsp;Remove</span></li>
+                            <li class="divider"></li>
+                            <li><span class="menu-ctrl" data="exportPalette(palette)" text="Export Palette" palette-download></span></li>
                         </ul>
                     </div>
                 </div>
@@ -29,4 +53,7 @@
             </div>
         </li>
     </ul>
+    <p ng-show="palettes.length >= 3">
+        <a href="#" ng-click="addPalette()" class="add-palette" prevent-default><i class="icon icon-add blue"></i> Add Palette</a>
+    </p>
 </div>
