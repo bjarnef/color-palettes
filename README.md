@@ -34,7 +34,7 @@ var colors = ((ColorPalette)CurrentPage.theme).Colors;
 {
         @color.Code;
 }
-````
+```
 
 #### Get a specific color in the palette
 
@@ -44,4 +44,88 @@ string color1 = palette.Colors.ElementAt(0).Code,
        color3 = palette.Colors.ElementAt(2).Code,
        color4 = palette.Colors.ElementAt(3).Code,
        color5 = palette.Colors.ElementAt(4).Code;
-````
+```
+
+#### Export/Import JSON format
+```
+[
+  {
+    "name": "Summer Watermelon",
+    "alias": "summer-watermelon",
+    "colors": [
+      {
+        "name": null,
+        "code": "#FE495F"
+      },
+      {
+        "name": null,
+        "code": "#FE9D97"
+      },
+      {
+        "name": null,
+        "code": "#FFFEC8"
+      },
+      {
+        "name": null,
+        "code": "#D8FD94"
+      },
+      {
+        "name": null,
+        "code": "#BDED7E"
+      }
+    ]
+  },
+  {
+    "name": "Vintage",
+    "alias": "vintage",
+    "colors": [
+      {
+        "name": null,
+        "code": "#566F6E"
+      },
+      {
+        "name": null,
+        "code": "#659A91"
+      },
+      {
+        "name": null,
+        "code": "#BBCEB0"
+      },
+      {
+        "name": null,
+        "code": "#F8F2C1"
+      },
+      {
+        "name": null,
+        "code": "#906B61"
+      }
+    ]
+  },
+  {
+    "name": "Ice Coffee",
+    "alias": "ice-coffee",
+    "colors": [
+      {
+        "name": null,
+        "code": "#D9D6C7"
+      },
+      {
+        "name": null,
+        "code": "#BFB8A3"
+      },
+      {
+        "name": null,
+        "code": "#A69677"
+      },
+      {
+        "name": null,
+        "code": "#8C7961"
+      },
+      {
+        "name": null,
+        "code": "#26150F"
+      }
+    ]
+  }
+]
+```
