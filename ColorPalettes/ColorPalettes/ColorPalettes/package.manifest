@@ -3,6 +3,8 @@
     {
         alias: "Our.Umbraco.ColorPalettes",
         name: "Color Palettes",
+        group: "Pickers",
+        icon: "icon-palette",
         editor:{
             view: "~/App_Plugins/ColorPalettes/views/ColorPalettes.html",
             valueType: "JSON"
